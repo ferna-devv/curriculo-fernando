@@ -1,0 +1,35 @@
+// src/app/app.scss
+@use '../styles/mixins' as *;
+
+.bento-layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  min-height: 100vh;
+
+  @include tablet {
+    padding: var(--space-xl);
+    gap: var(--space-2xl);
+  }
+}
+
+// ─── ANIMAÇÕES DE ENTRADA ESCALONADAS (STAGGER) ──────
+// Cada cartão entra em cascata suave ao carregar a página
+app-hero {
+  animation-delay: 0s;
+}
+
+app-skills {
+  animation-delay: 0.12s;
+}
+
+app-experiencia {
+  animation-delay: 0.24s;
+}
+
+app-contato {
+  animation-delay: 0.36s;
+}

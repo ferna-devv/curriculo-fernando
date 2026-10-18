@@ -1,0 +1,40 @@
+<!-- src/app/components/experiencia/experiencia.html -->
+<section class="experiencia-card" aria-label="Trajetória e Formação">
+  <div class="experiencia-card__header">
+    <div class="experiencia-card__title-wrapper">
+      <span class="experiencia-card__icon">📈</span>
+      <h2 class="experiencia-card__title">Trajetória & Formação</h2>
+    </div>
+    <span class="experiencia-card__badge">Jornada de Aprendizado</span>
+  </div>
+
+  <!-- Timeline integrada ao Bento Grid -->
+  <div class="experiencia-card__timeline">
+    @for (item of trajetoria(); track item.titulo) {
+      <article
+        class="timeline-node"
+        [class.timeline-node--destaque]="item.destaque">
+        
+        <div class="timeline-node__header">
+          <div class="timeline-node__meta">
+            <span class="timeline-node__icone">{{ item.icone }}</span>
+            <div>
+              <h3 class="timeline-node__titulo">{{ item.titulo }}</h3>
+              <span class="timeline-node__instituicao">{{ item.instituicao }}</span>
+            </div>
+          </div>
+          <span class="timeline-node__periodo">{{ item.periodo }}</span>
+        </div>
+
+        <p class="timeline-node__descricao">{{ item.descricao }}</p>
+
+        <!-- @for aninhado para renderizar as tags de tecnologia de cada etapa -->
+        <div class="timeline-node__tags">
+          @for (tag of item.tags; track tag) {
+            <span class="timeline-node__tag">{{ tag }}</span>
+          }
+        </div>
+      </article>
+    }
+  </div>
+</section>

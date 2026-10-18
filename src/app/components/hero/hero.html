@@ -1,0 +1,28 @@
+<!-- src/app/components/hero/hero.html -->
+<section class="hero-card" aria-label="Apresentação pessoal">
+  <!-- Moldura com a sua foto -->
+  <div class="hero-card__avatar-container">
+    <div class="hero-card__avatar-glow"></div>
+    <img
+      class="hero-card__avatar"
+      [src]="avatarUrl()"
+      [alt]="'Foto de perfil de ' + nome()"
+    />
+    <div class="hero-card__status" title="Disponível para projetos">
+      <span class="hero-card__status-dot"></span>
+      <span class="hero-card__status-text">Disponível</span>
+    </div>
+  </div>
+
+  <!-- Conteúdo textual e informações -->
+  <div class="hero-card__content">
+    <div class="hero-card__badge">
+      <span class="hero-card__badge-icon">⚡</span>
+      <span class="hero-card__badge-text">{{ papel() }}</span>
+    </div>
+
+    <h1 class="hero-card__nome">{{ nome() }}</h1>
+
+    <p class="hero-card__bio">{{ bio() }}</p>
+  </div>
+</section>

@@ -1,0 +1,206 @@
+// src/app/components/skills/skills.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.skills-card {
+  @include glass(16px, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-normal);
+
+  &:hover {
+    border-color: var(--border-hover);
+  }
+
+  // ─── CABEÇALHO DA SEÇÃO ───────────────────────────────
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: var(--space-md);
+  }
+
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  &__icon {
+    font-size: 1.3rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  &__count {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: var(--accent-subtle);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  // ─── BOTÕES DE FILTRO ─────────────────────────────────
+  &__filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+
+    @include tablet {
+      gap: var(--space-sm);
+    }
+  }
+
+  &__filtro-btn {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-subtle);
+    }
+
+    &--ativo {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: var(--shadow-glow);
+
+      &:hover {
+        background: var(--accent-hover);
+        color: #ffffff;
+      }
+    }
+  }
+
+  // ─── GRADE DE HABILIDADES (CSS GRID) ──────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-2xl) var(--space-md);
+    color: var(--text-muted);
+
+    span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+  }
+}
+
+// ─── CARTÃO INDIVIDUAL DE CADA SKILL ────────────────────
+.skill-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: transform var(--transition-fast),
+              border-color var(--transition-fast),
+              background var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+    background: var(--accent-subtle);
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__icone {
+    font-size: 1.2rem;
+  }
+
+  &__nome {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+
+  &__badge {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+  }
+
+  // Barra de progresso visual
+  &__barra {
+    height: 6px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  &__progresso {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: var(--radius-full);
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

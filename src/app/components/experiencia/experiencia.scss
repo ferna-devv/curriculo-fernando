@@ -1,0 +1,214 @@
+// src/app/components/experiencia/experiencia.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.experiencia-card {
+  @include glass(16px, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-normal);
+
+  &:hover {
+    border-color: var(--border-hover);
+  }
+
+  // ─── CABEÇALHO ───────────────────────────────────────
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: var(--space-md);
+  }
+
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  &__icon {
+    font-size: 1.3rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  &__badge {
+    font-size: 0.78rem;
+    padding: 3px 12px;
+    border-radius: var(--radius-full);
+    background: var(--accent-subtle);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  // ─── ESTRUTURA DA LINHA DO TEMPO ─────────────────────
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    position: relative;
+    padding-left: var(--space-sm);
+
+    @include tablet {
+      padding-left: var(--space-md);
+    }
+  }
+}
+
+// ─── CADA NÓ DA TIMELINE ───────────────────────────────
+.timeline-node {
+  position: relative;
+  padding-left: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-left: 12px;
+  transition: transform var(--transition-fast),
+              border-color var(--transition-fast),
+              background var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+  }
+
+  // Linha vertical conectora
+  &::before {
+    content: '';
+    position: absolute;
+    left: -13px;
+    top: 24px;
+    bottom: -32px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--border-subtle));
+  }
+
+  &:last-child::before {
+    display: none; // O último nó não precisa continuar a linha
+  }
+
+  // Ponto circular luminoso
+  &::after {
+    content: '';
+    position: absolute;
+    left: -19px;
+    top: 22px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+    z-index: 2;
+  }
+
+  // Destaque para o nó principal (Banco de Dados)
+  &--destaque {
+    border-color: rgba(139, 92, 246, 0.45);
+    background: rgba(139, 92, 246, 0.05);
+
+    &::after {
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+  }
+
+  // ─── CABEÇALHO DO ITEM ───────────────────────────────
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  &__icone {
+    font-size: 1.4rem;
+  }
+
+  &__titulo {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  &__instituicao {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  &__periodo {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    width: fit-content;
+  }
+
+  &__descricao {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  // ─── TAGS DE TECNOLOGIAS ─────────────────────────────
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  &__tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: 2px 9px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

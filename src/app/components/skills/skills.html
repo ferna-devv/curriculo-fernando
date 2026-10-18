@@ -1,0 +1,52 @@
+<!-- src/app/components/skills/skills.html -->
+<section class="skills-card" aria-label="Habilidades e Tecnologias">
+  <div class="skills-card__header">
+    <div class="skills-card__title-wrapper">
+      <span class="skills-card__icon">🛠️</span>
+      <h2 class="skills-card__title">Tecnologias & Habilidades</h2>
+    </div>
+    <span class="skills-card__count">
+      {{ skillsFiltradas().length }} {{ skillsFiltradas().length === 1 ? 'skill' : 'skills' }}
+    </span>
+  </div>
+
+  <!-- Botões de Filtro Interativo -->
+  <div class="skills-card__filtros" role="tablist" aria-label="Filtrar por categoria">
+    @for (cat of categorias; track cat) {
+      <button
+        type="button"
+        class="skills-card__filtro-btn"
+        [class.skills-card__filtro-btn--ativo]="filtroAtivo() === cat"
+        (click)="setFiltro(cat)">
+        {{ cat }}
+      </button>
+    }
+  </div>
+
+  <!-- Grade de Cartões Bento de Skills -->
+  <div class="skills-card__grid">
+    @for (skill of skillsFiltradas(); track skill.nome) {
+      <article class="skill-item">
+        <div class="skill-item__top">
+          <div class="skill-item__info">
+            <span class="skill-item__icone">{{ skill.icone }}</span>
+            <span class="skill-item__nome">{{ skill.nome }}</span>
+          </div>
+          <span class="skill-item__badge">{{ skill.nivelTexto }}</span>
+        </div>
+
+        <div class="skill-item__barra">
+          <div
+            class="skill-item__progresso"
+            [style.width.%]="skill.progresso">
+          </div>
+        </div>
+      </article>
+    } @empty {
+      <div class="skills-card__vazio">
+        <span>🔍</span>
+        <p>Nenhuma tecnologia encontrada nesta categoria.</p>
+      </div>
+    }
+  </div>
+</section>

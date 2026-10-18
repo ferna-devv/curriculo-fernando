@@ -1,0 +1,69 @@
+<!-- src/app/components/contato/contato.html -->
+<section class="contato-card" aria-label="Conexões e Contato">
+  <!-- Coluna da esquerda: Chamada e Redes -->
+  <div class="contato-card__left">
+    <div class="contato-card__header">
+      <span class="contato-card__icon">💬</span>
+      <div>
+        <h2 class="contato-card__title">Vamos Conversar?</h2>
+        <p class="contato-card__subtitle">
+          Estou sempre aberto a novas conexões, aprendizados e oportunidades na área de desenvolvimento.
+        </p>
+      </div>
+    </div>
+
+    <!-- Botões de Ação e Links -->
+    <div class="contato-card__actions">
+      <!-- Botão Copiar E-mail com Feedback Visual -->
+      <button
+        type="button"
+        class="contato-btn contato-btn--accent"
+        [class.contato-btn--sucesso]="copiado()"
+        (click)="copiarEmail()">
+        @if (copiado()) {
+          <span>✓ E-mail Copiado!</span>
+        } @else {
+          <span>📋 Copiar E-mail</span>
+        }
+      </button>
+
+      <!-- Link Direto de E-mail (mailto) -->
+      <a
+        class="contato-btn contato-btn--outline"
+        [href]="'mailto:' + email()">
+        <span>✉️ Abrir no E-mail</span>
+      </a>
+
+      <!-- Link do LinkedIn Oficial -->
+      <a
+        class="contato-btn contato-btn--outline"
+        [href]="linkedinUrl()"
+        target="_blank"
+        rel="noopener noreferrer">
+        <span>🔗 LinkedIn</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Coluna da direita: O Botão Mágico de Toggle de Tema -->
+  <div class="contato-card__theme-box">
+    <span class="contato-card__theme-label">Aparência</span>
+    <button
+      type="button"
+      class="theme-toggle-btn"
+      (click)="alternarTema()"
+      [title]="temaEscuro() ? 'Mudar para tema claro' : 'Mudar para tema escuro'">
+      @if (temaEscuro()) {
+        <span class="theme-toggle-btn__content">
+          <span class="theme-toggle-btn__icon">🌙</span>
+          <span>Tema Escuro</span>
+        </span>
+      } @else {
+        <span class="theme-toggle-btn__content">
+          <span class="theme-toggle-btn__icon">☀️</span>
+          <span>Tema Claro</span>
+        </span>
+      }
+    </button>
+  </div>
+</section>
